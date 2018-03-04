@@ -11,3 +11,8 @@ To launch: in the main directory (where docker-compose.yml is)
 
 `docker-compose up`
 
+To rebuild (if you make changes to docker-compose, or any Dockerfile or anything else)
+
+`docker-compose build`
+
+
