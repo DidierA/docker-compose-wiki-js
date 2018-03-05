@@ -10,10 +10,7 @@ services:
     volumes:
     - "mongo-db:/data/db"
 # mongo-db volume is created for data persistence
-  nginx:
-    build: ./nginx
-    ports:
-    - "443:443"
+
   wiki:
     build: ./wiki
     volumes:
@@ -23,5 +20,15 @@ services:
     environment:
     - WIKI_HOST=https://127.0.0.1:443 # Change hostname here if required
     - WIKI_ADMIN_EMAIL=admin@example.com
+    depends_on:
+      - "mongo"
+      
+  nginx:
+    build: ./nginx
+    ports:
+    - "443:443"
+    depends_on:
+      - "wiki"
+
 volumes:
   mongo-db:
